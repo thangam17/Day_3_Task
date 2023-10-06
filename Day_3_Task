@@ -1,0 +1,51 @@
+1.Question How to compare two JSON have the same properties without order? a.let obj1 = { name: "person1", age: 5}; b.let obj2 = { age:5, name: "person1"};
+
+Answer
+
+    var user = { name: "person", age: 5 }; var user1 = { age:5, name: "person" };
+
+   function isEqual(user, user1) {
+
+   var userKeys = Object.keys(user);
+   var user1Keys = Object.keys(user1);
+
+  if(userKeys.length != user1Keys.length){
+  return false
+  }
+  for (var userKey of userKeys) { if (user[userKey] != user1[userKey]) { return false; } } return true; } console.log(isEqual(user, user1));
+
+
+
+2.Question use the rest countries' API URL -> https://restcountries.com/v3.1/all and display all the country flags in the console
+
+Answer
+
+   var xhr = new XMLHttpRequest (); xhr.open('GET', 'https://restcountries.com/v3.1/all'); xhr.responseType = "json";
+
+   xhr.send();
+
+   xhr.onload = function (){ var responseObj = xhr.response;
+
+   for(var i=0; i< responseObj.length; i++){
+    console.log(responseObj[i].flag);
+   }
+   }
+
+3.Question Use the same rset countries and print all countries names, regions, sub-regions and populations
+
+Answer
+
+   var xhr = new XMLHttpRequest ();
+   xhr.open('GET', 'https://restcountries.com/v3.1/all'); xhr.responseType = "json";
+
+   xhr.send();
+
+   xhr.onload = function (){ var responseObj = xhr.response;
+
+   for(var i=0; i< responseObj.length; i++){
+    console.log(responseObj[i].name.common);
+    console.log(responseObj[i].region);
+    console.log(responseObj[i].subregion);
+    console.log(responseObj[i].population);
+   }
+  }
